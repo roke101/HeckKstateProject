@@ -55,19 +55,19 @@ activeObjectMT = {
 		loadChildren = function(self)
 			for key, value in pairs(self.children) do
 				print('loading '..key)
-				self.children[key].load()
+				self.children[key]:load()
 			end
 		end,
 
 		updateChildren = function(self)
 			for key, value in pairs(self.children) do
-				self.children[key].update()
+				self.children[key]:update()
 			end
 		end,
 
 		drawChildren = function(self)
 			for key, value in pairs(self.children) do
-				self.children[key].draw()
+				self.children[key]:draw()
 			end
 		end
 	}

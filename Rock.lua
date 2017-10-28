@@ -15,7 +15,7 @@ Moss = {
 
 	load = function(self)
 
-		self.loadChildren(self)
+		self:loadChildren()
 	end,
 	
 	update = function(self)
