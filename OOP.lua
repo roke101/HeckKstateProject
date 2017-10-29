@@ -27,6 +27,31 @@ prototypeMT = {
 
 activeObjectMT = {
 	__index = {
+		r = 0,
+		sx = 1,
+		sy = 1,
+		ox = 0,
+		oy = 0,
+		getX = function (self)
+			if self.x ~= nil then
+				return self.x
+			elseif self.body ~= nil then
+				return self.body.getX()
+			else
+				return 0
+			end
+		end,
+
+		getY = function (self)
+			if self.y ~= nil then
+				return self.y
+			elseif self.body ~= nil then
+				return self.body.getY()
+			else
+				return 0
+			end
+		end,
+
 		--children.child = self:newChild(prototype, arguments)
 		newChild = function(self, prototype, arguments)
 			newObject = {}
