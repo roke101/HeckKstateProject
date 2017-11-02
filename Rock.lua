@@ -1,4 +1,5 @@
 require 'OOP'
+
 Moss = {
 	x = 0,
 	y = 0,
@@ -52,7 +53,47 @@ Rock = {
 
 	draw = function(self)
 		self:drawChildren()
-	end
+	end,
+
+	getX = function (self)
+		if self.body ~= nil then
+			return self.body.getX()
+		elseif self.x ~= nil then
+			return self.x
+		else
+			return 0
+		end
+	end,
+
+	getY = function (self)
+		if self.y ~= nil then
+			return self.y
+		elseif self.body ~= nil then
+			return self.body.getY()
+		else
+			return 0
+		end
+	end,
+
+	setX = function (self)
+		if self.body ~= nil then
+			return self.body.getX()
+		elseif self.x ~= nil then
+			return self.x
+		else
+			return 0
+		end
+	end,
+
+	setY = function (self)
+		if self.y ~= nil then
+			return self.y
+		elseif self.body ~= nil then
+			return self.body.getY()
+		else
+			return 0
+		end
+	end,
 }
-setmetatable(Rock, prototypeMT)
+setmetatable(Rock, OOP.prototypeMT)
 
