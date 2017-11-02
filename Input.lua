@@ -1,5 +1,4 @@
---make an index table with functions that are called to check the current input stuff and decide what input is down
---based on that and these are userinput from a newTrigger() or a newcontrol() method
+-- Author: Max Wiens-Evangelista 2017
 
 Input = {
 	inputMap = { --move to input file
@@ -31,7 +30,10 @@ Input = {
 		self.DOUBLE_INPUT_DELAY = doubleTapInputDelay or 0.3
 		inputMap = inputMap or {}
 		inputs = inputs or {}
-
+		for k,v in pairs(inputs) do
+			print(k,v)
+		end
+		
 		for key, action in pairs(inputMap) do
 			if(key ~= 'doubleTap') then
 				self.inputMap[key] = action

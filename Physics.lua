@@ -1,3 +1,4 @@
+-- Author: Max Wiens-Evangelista 2017
 require 'OOP'
 
 Physics = {
@@ -37,4 +38,4 @@ Physics = {
 		self:drawChildren()
 	end
 }
-setmetatable(Physics, OOP.activeObjectMT)
+setmetatable(Physics, OOP.prototypeMT)

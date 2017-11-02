@@ -1,4 +1,5 @@
-require 'Util'
+-- Author: Max Wiens-Evangelista 2017
+require 'util' 
 
 OOP = {
 	prototypeMT = {
@@ -6,21 +7,21 @@ OOP = {
 			new = function(self, ...)
 				newObject = {}
 
-				deepOverwrite(newObject, self)
+				util.deepOverwrite(newObject, self)
 
 				setmetatable(newObject, OOP.activeObjectMT)
-				newObject:construct(arg)
+				newObject:construct(...)
 				return newObject
 			end,
 
 			newModify = function(self, arguments, ...)
 				newObject = {}
-
-				deepOverwrite(newObject, self)
-				deepOverwrite(newObject, arguments)
+				
+				util.deepOverwrite(newObject, self)
+				util.deepOverwrite(newObject, arguments)
 				
 				setmetatable(newObject, OOP.activeObjectMT)
-				newObject:construct(arg)
+				newObject:construct(...)
 				newObject:load()
 				return newObject
 			end
@@ -31,33 +32,32 @@ OOP = {
 		__index = {
 			--children.child = self:newChild(prototype, arguments)
 			newChild = function(self, prototype, ...)
-				newObject = {}
-				arguments = arguments or {}
+				newObject = {}	
 
-				deepOverwrite(newObject, prototype)
-				deepOverwrite(newObject, arguments)
+				util.deepOverwrite(newObject, prototype)
+				util.deepOverwrite(newObject, arguments)
 				newObject.parent = self
 
 				setmetatable(newObject, OOP.activeObjectMT)
-				newObject:construct(arg)
+				newObject:construct(...)
 				return newObject
 			end,
 
-			newModifyChild = function(self, prototype, arguments)
+			newModifyChild = function(self, prototype, arguments, ...)
 				newObject = {}
 				arguments = arguments or {}
 
-				deepOverwrite(newObject, prototype)
-				deepOverwrite(newObject, arguments)
+				util.deepOverwrite(newObject, prototype)
+				util.deepOverwrite(newObject, arguments)
 				newObject.parent = self
 
 				setmetatable(newObject, OOP.activeObjectMT)
+				newObject:construct(...)
 				return newObject
 			end,
 
 			loadChildren = function(self)
 				for key, value in pairs(self.children) do
-					print('loading '..key)
 					self.children[key]:load()
 				end
 			end,

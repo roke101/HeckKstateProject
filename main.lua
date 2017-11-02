@@ -1,20 +1,22 @@
+-- Author: Max Wiens-Evangelista & Justin Miller 2017
+
 require 'Debug'
 require 'Rock'
 require 'Input'
 
 require 'MushroomGuy'
-
 function love.load()
-	input = Input:new({}, {})
-	--physics = Physics:new()
+	
+	input = Input:new()
+	physics = Physics:new(0, 0, true, true)
 
 	goomba1 = MushroomGuy:new()
-	goomba2 = MushroomGuy:new({imageDir = 'otherimage.png'})
+	goomba2 = MushroomGuy:new()
 	
-	print('goomba1')
-	Debug.deepPrint(goomba1)
-	print('\ngoomba2')
-	Debug.deepPrint(goomba2)
+	--print('goomba1')
+	--Debug.deepPrint(goomba1)
+	--print('\ngoomba2')
+	--Debug.deepPrint(goomba2)
 end
 
 function love.update(dt)
