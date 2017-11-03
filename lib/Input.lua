@@ -1,5 +1,7 @@
 -- Author: Max Wiens-Evangelista 2017
 
+require 'lib.OOP'
+
 Input = {
 	inputMap = { --move to input file
 		a = 'left', 

@@ -1,11 +1,11 @@
 -- Author: Max Wiens-Evangelista 2017
-require 'util' 
+require 'lib.util' 
 
 OOP = {
 	prototypeMT = {
 		__index = {
 			new = function(self, ...)
-				newObject = {}
+				local newObject = {}
 
 				util.deepOverwrite(newObject, self)
 
@@ -15,7 +15,7 @@ OOP = {
 			end,
 
 			newModify = function(self, arguments, ...)
-				newObject = {}
+				local newObject = {}
 				
 				util.deepOverwrite(newObject, self)
 				util.deepOverwrite(newObject, arguments)

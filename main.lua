@@ -1,22 +1,28 @@
 -- Author: Max Wiens-Evangelista & Justin Miller 2017
 
-require 'Debug'
-require 'Rock'
-require 'Input'
+require 'lib.Input'
+require 'lib.Physics'
+require 'lib.Camera'
 
-require 'MushroomGuy'
 function love.load()
-	
+	-- Global Variables --
+	X_RESOLUTION = 256
+	Y_RESOLUTION = 144
+	X_SCALE = love.graphics.getWidth()/X_RESOLUTION
+	Y_SCALE = love.graphics.getHeight()/Y_RESOLUTION
+	TILE_SIZE = 16
+
+	-- Graphics and Images --
+	love.graphics.setDefaultFilter('nearest', 'nearest', 0)
+
+	-- Global Tables --
+	objects = {}
+	layers = {}
+
+	-- Global Objects --
 	input = Input:new()
 	physics = Physics:new(0, 0, true, true)
-
-	goomba1 = MushroomGuy:new()
-	goomba2 = MushroomGuy:new()
-	
-	--print('goomba1')
-	--Debug.deepPrint(goomba1)
-	--print('\ngoomba2')
-	--Debug.deepPrint(goomba2)
+	camera = Camera:new(X_RESOLUTION, Y_RESOLUTION, physics.worlds.meta, layers)
 end
 
 function love.update(dt)
@@ -24,13 +30,8 @@ function love.update(dt)
 end
 
 function love.draw()
-	love.graphics.print('doubleTapInput: '..tostring(input.input.doubleTapInput))
-	love.graphics.print('up: '..tostring(input.input.up), 0, 16)
-	love.graphics.print('down: '..tostring(input.input.down), 0, 32)
-	love.graphics.print('left: '..tostring(input.input.left), 0, 48)
-	love.graphics.print('right: '..tostring(input.input.right), 0, 64)
-	love.graphics.print('activate: '..tostring(input.input.activate), 0, 80)
-	love.graphics.print('last Input: '..tostring(input.lastInput), 0, 96)
+	love.graphics.scale(X_SCALE, Y_SCALE)
+	camera:draw()
 end
 
 function love.keypressed(key, isrepeat)

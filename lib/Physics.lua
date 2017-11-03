@@ -1,17 +1,19 @@
 -- Author: Max Wiens-Evangelista 2017
-require 'OOP'
+require 'lib.OOP'
 
 Physics = {
 	worlds = {
-		main = nil
+		main = nil,
+		meta = nil
 	},
 
 	children = {},
 
 	--[[
-		number xGravMain - sets the x Gravity property main physics world
-		number yGravMain - sets the y Gravity property main physics world
-		boolean allowForSleepMain - Whether the bodies in this world are allowed to sleep.
+		number xGravMain (0) - sets the x Gravity property main physics world
+		number yGravMain (0) - sets the y Gravity property main physics world
+		boolean allowForSleepMain (true) - Whether the bodies in this world are allowed to sleep.
+		boolean createMetaWorld (true) - Whether 
 	]]--
 	construct = function (self, xGravMain, yGravMain, allowForSleepMain, createMetaWorld)
 		xGravMain = xGravMain or 0
