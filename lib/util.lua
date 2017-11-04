@@ -12,5 +12,13 @@ util = {
 			end
 		end
 		return table1
+	end,
+
+	round = function (n)
+		if n < 0 then
+			return math.ceil(n-.5)
+		else 
+			return math.floor(n+.5)
+		end
 	end
 }

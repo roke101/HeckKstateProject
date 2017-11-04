@@ -1,8 +1,12 @@
+-- Modified
 -- Author: Max Wiens-Evangelista & Justin Miller 2017
 
 require 'lib.Input'
 require 'lib.Physics'
 require 'lib.Camera'
+require 'lib.Debug'
+
+require 'level1'
 
 function love.load()
 	-- Global Variables --
@@ -16,28 +20,45 @@ function love.load()
 	love.graphics.setDefaultFilter('nearest', 'nearest', 0)
 
 	-- Global Tables --
-	objects = {}
-	layers = {}
+	IMAGES = {}
+	AUDIO = {}
+	OBJECTS = {}
+	LAYERS = {}
+	CURRENT_LEVEL = {}
 
 	-- Global Objects --
-	input = Input:new()
-	physics = Physics:new(0, 0, true, true)
-	camera = Camera:new(X_RESOLUTION, Y_RESOLUTION, physics.worlds.meta, layers)
+	INPUT = Input:new()
+	PHYSICS = Physics:new(0, 0, true, true)
+	CAMERA = Camera:new(X_RESOLUTION, Y_RESOLUTION, PHYSICS.worlds.meta)
+
+
+	-- Loading Initial Values START --
+	level1:loadLevel()
 end
 
 function love.update(dt)
-	input:update()
+	INPUT:update()
+	CAMERA:update()
+	if(INPUT.input.right) then
+		CAMERA.body:setX(CAMERA.body:getX()-0.5,0)
+	end
+	if(INPUT.input.left) then
+		CAMERA.body:setX(CAMERA.body:getX()+0.5,0)
+	end
 end
 
 function love.draw()
+
 	love.graphics.scale(X_SCALE, Y_SCALE)
-	camera:draw()
+	CAMERA:draw()
+
+	love.graphics.print(CAMERA:getX())
 end
 
 function love.keypressed(key, isrepeat)
-	input:inputController(key)
+	INPUT:inputController(key)
 end
 
 function love.keyreleased(key, scancode)
-	input:inputReleaseController(key)
+	INPUT:inputReleaseController(key)
 end
